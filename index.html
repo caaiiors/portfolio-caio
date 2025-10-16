@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Caio Rissa Silveira - Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="135877248.ico" type="image/x-icon" />
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- SEO / Theme color -->
+  <meta name="theme-color" content="#000000">
+</head>
+<body class="dark-mode">
+  <!-- Particles canvas (fundo) -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#">Caio Rissa Silveira</a>
+      <nav class="nav-links">
+        <a href="#about">Sobre</a>
+        <a href="#projects">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <button id="themeToggle" class="btn small">🌙</button>
+      <button id="menu-btn" class="burger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h1 class="reveal">Olá, eu sou <span class="accent">Caio</span>.</h1>
+          <p class="lead reveal delay-1">Desenvolvedor · Criador de interfaces futuristas · UI/UX</p>
+          <div class="actions reveal delay-2">
+            <a href="#projects" class="btn primary">Ver Projetos</a>
+            <a href="#contato" class="btn ghost">Entrar em contato</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title reveal">Sobre mim</h2>
+        <div class="grid about-grid">
+          <div class="glass panel reveal delay-1">
+            <h3>Sobre mim</h3>
+            <p>Meu nome é Caio Rissa Silveira e sou do Rio Grande do Sul. Sou um desenvolvedor front-end que gosta de interfaces limpas, animações sutis e experiências com muita presença visual — tudo em preto e branco para foco total no conteúdo.</p>
+          </div>
+          
+<div class="skills-grid glass panel reveal delay-2">
+  <h3>Skills</h3>
+
+  <div class="skills">
+    <!-- Skill 1 -->
+    <div class="skill">
+      <img src="src/html5-logo-31813.png" alt="HTML5">
+      <div class="skill-info">
+        <h4>HTML5</h4>
+        <p>Criação da estrutura base das páginas e componentes web.</p>
+      </div>
+    </div>
+
+    <!-- Skill 2 -->
+    <div class="skill">
+      <img src="src/css3-logo-31821.png" alt="CSS3">
+      <div class="skill-info">
+        <h4>CSS3</h4>
+        <p>Estilização moderna com animações e design responsivo.</p>
+      </div>
+    </div>
+
+    <!-- Skill 3 -->
+    <div class="skill">
+      <img src="src/javascript-39410.png" alt="JavaScript">
+      <div class="skill-info">
+        <h4>JavaScript</h4>
+        <p>Criação de interatividade e lógicas dinâmicas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title reveal">Projetos</h2>
+        <div class="grid projects-grid">
+          <!-- Card 1 -->
+          <article class="project-card glass reveal delay-1">
+            <div class="card-media">
+              <img src="src/jogodavelhaprint.png" alt="Preview do projeto" class="site-preview" />
+            </div>
+            <div class="card-body">
+              <h3>Jogo da Velha</h3>
+              <p>Jogo da velha, desenvolvido com HTML, CSS e JS.</p>
+              <div class="card-actions">
+                <a href="https://jogo-da-velha-caiorissa.vercel.app" class="btn small">Demo</a>
+                <a href="https://github.com/caaiiors/jogo-da-velha" class="btn small ghost">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="project-card glass reveal delay-2">
+            <div class="card-media">
+              <img src="#" alt="Preview do projeto" class="site-preview">
+            </div>
+            <div class="card-body">
+              <h3>Projeto 2</h3>
+              <p>Interface UI com microinterações e feedback visual.</p>
+              <div class="card-actions">
+                <a href="#" class="btn small">Demo</a>
+                <a href="#" class="btn small ghost">Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="project-card glass reveal delay-3">
+            <div class="card-media">
+              <img src="#" alt="Preview do projeto" class="site-preview">
+            </div>
+            <div class="card-body">
+              <h3>Projeto 3</h3>
+              <p>Projeto experimental com partículas e shaders.</p>
+              <div class="card-actions">
+                <a href="#" class="btn small">Demo</a>
+                <a href="#" class="btn small ghost">Código</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contato" class="contato">
+      <div class="contato-container">
+        
+        <div class="contato-card reveal delay-4">
+          <p>Quer conversar ou trabalhar comigo? Manda um e-mail direto 👇</p>
+          <a href="mailto:caiorissa@gmail.com?subject=Contato%20via%20Portfólio" class="botao-email">
+            ✉️ Enviar por e-mail
+          </a>
+        </div>
+
+        <div class="connect-card reveal delay-4">
+          <h3>Let’s connect</h3>
+          <p>Envia uma mensagem ou me segue nessas redes sociais.</p>
+          <div class="icons">
+    <a href="https://instagram.com/caaiio.dev" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="src/instagram-icon-33472.png" alt="Instagram" class="icon">
+    <a href="https://x.com/caaiiors_" target="_blank" rel="noopener" aria-label="x">
+              <img src="src/twitter-x-logo-42554.png" alt="Instagram" class="icon">
+            </a>
+            </a>
+            </a>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <small>© <span id="year"></span> Caio Rissa Silveira — Todos os direitos reservados</small>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="scripts.js" defer></script>
+</body>
+</html>
