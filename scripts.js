@@ -276,6 +276,7 @@ if (localStorage.getItem('theme') === 'dark') {
       navAbout: "Sobre",
       navProjects: "Projetos",
       navContact: "Contato",
+      sobreMim: "Sobre mim",
       heroTitle: "Olá, eu sou <span class='accent'>Caio</span>.",
       heroSubtitle: "Desenvolvedor · Criador de interfaces futuristas · UI/UX",
       heroBtnProjects: "Ver Projetos",
@@ -304,6 +305,7 @@ if (localStorage.getItem('theme') === 'dark') {
       navAbout: "About",
       navProjects: "Projects",
       navContact: "Contact",
+      sobreMim: "About me",
       heroTitle: "Hi, I'm <span class='accent'>Caio</span>.",
       heroSubtitle: "Developer · Futuristic interface creator · UI/UX",
       heroBtnProjects: "View Projects",
@@ -337,6 +339,7 @@ if (localStorage.getItem('theme') === 'dark') {
     navAbout: document.querySelector("a[href='#about']"),
     navProjects: document.querySelector("a[href='#projects']"),
     navContact: document.querySelector("a[href='#contato']"),
+    sobreMim: document.querySelector(".sobreMim"),
     heroTitle: document.querySelector(".hero-left h1"),
     heroSubtitle: document.querySelector(".hero-left .lead"),
     heroBtnProjects: document.querySelector(".actions a.btn.primary"),
@@ -344,7 +347,6 @@ if (localStorage.getItem('theme') === 'dark') {
     aboutTitle: document.querySelector("#about .section-title"),
     aboutText: document.querySelector("#about .panel p"),
     skillsTitle: document.querySelector(".skills-grid h3"),
-    // Cada descrição de skill individualmente
     skillsHTML: document.querySelectorAll(".skill-info p")[0],
     skillsCSS: document.querySelectorAll(".skill-info p")[1],
     skillsJS: document.querySelectorAll(".skill-info p")[2],
@@ -369,6 +371,7 @@ if (localStorage.getItem('theme') === 'dark') {
     elements.navAbout && (elements.navAbout.textContent = t.navAbout);
     elements.navProjects && (elements.navProjects.textContent = t.navProjects);
     elements.navContact && (elements.navContact.textContent = t.navContact);
+    elements.sobreMim &&(elements.sobreMim.textContent = t.sobreMim)
     elements.heroTitle && (elements.heroTitle.innerHTML = t.heroTitle);
     elements.heroSubtitle && (elements.heroSubtitle.textContent = t.heroSubtitle);
     elements.heroBtnProjects && (elements.heroBtnProjects.textContent = t.heroBtnProjects);
