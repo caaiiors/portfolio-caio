@@ -283,7 +283,7 @@ if (localStorage.getItem('theme') === 'dark') {
       heroBtnContact: "Entrar em contato",
       aboutTitle: "Sobre mim",
       aboutText:
-        "Meu nome é Caio Rissa Silveira e sou do Rio Grande do Sul. Sou um desenvolvedor front-end que gosta de interfaces limpas, animações sutis e experiências com muita presença visual — tudo em preto e branco para foco total no conteúdo.",
+        "Meu nome é Caio Rissa Silveira e sou do Rio Grande do Sul. Sou um desenvolvedor front-end que gosta de interfaces limpas, animações sutis e experiências com muita presença visual",
       skillsTitle: "Skills",
       skillsHTML: "Criação da estrutura base das páginas e componentes web.",
       skillsCSS: "Estilização moderna com animações e design responsivo.",
