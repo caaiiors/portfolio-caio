@@ -1,35 +1,53 @@
-export default function Navbar({ t, lang, setLang }) {
+import { useEffect, useState } from 'react';
+import { Moon, Sun } from '../ui/Icons';
+
+export default function Navbar({ t, lang, setLang, theme, toggleTheme }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const closeMenu = () => setMenuOpen(false);
+    window.addEventListener('resize', closeMenu);
+    return () => window.removeEventListener('resize', closeMenu);
+  }, []);
+
+  const links = [
+    ['#about', t.nav.about],
+    ['#studio', t.nav.studio],
+    ['#projects', t.nav.projects],
+    ['#mockups', t.nav.mockups],
+  ];
+
   return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', background: 'rgba(0,0,0,0.6)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
-
-        {/* Mobile: foto ao invés do nome */}
-        <a href="#home" className="md:hidden" style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src="/images/eu.jpeg"
-            alt="Caio"
-            style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.1)' }}
-          />
-        </a>
-
-        {/* Desktop: nome escrito */}
-        <a href="#home" className="hidden md:block" style={{ color: 'white', fontWeight: 700, fontSize: 16, letterSpacing: '-0.02em', textDecoration: 'none' }}>
-          Caio Rissa Silveira
-        </a>
-
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          <a href="#about" className="hidden md:block" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>{t.nav.about}</a>
-          <a href="#studio" className="hidden md:block" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>{t.nav.studio}</a>
-          <a href="#projects" className="hidden md:block" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>{t.nav.projects}</a>
-          <a href="#mockups" className="hidden md:block" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>{t.nav.mockups}</a>
-          <a href="#contact" className="hidden md:block" style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>{t.nav.contact}</a>
-          <button
-            onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}
-            style={{ fontSize: 12, padding: '6px 12px', borderRadius: 20, border: '1px solid rgba(255,255,255,0.1)', background: 'none', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s' }}
-          >
-            {lang === 'pt' ? '🇺🇸 EN' : '🇧🇷 PT'}
-          </button>
+    <header className="site-header">
+      <div className="nav-wrap">
+        <nav className={`nav-links ${menuOpen ? 'is-open' : ''}`} aria-label={t.nav.label}>
+          {links.map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+          ))}
+          <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>{t.nav.contact}</a>
         </nav>
+
+        <div className="nav-actions">
+          <button className="icon-button" onClick={toggleTheme} aria-label={t.nav.theme} title={t.nav.theme}>
+            {theme === 'dark' ? <Sun /> : <Moon />}
+          </button>
+          <button
+            className="language-button"
+            onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}
+            aria-label={lang === 'pt' ? 'Switch to English' : 'Mudar para português'}
+          >
+            {lang === 'pt' ? 'EN' : 'PT'}
+          </button>
+          <button
+            className={`menu-button ${menuOpen ? 'is-open' : ''}`}
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? t.nav.close : t.nav.menu}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
     </header>
   );

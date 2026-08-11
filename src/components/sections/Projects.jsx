@@ -1,101 +1,53 @@
-import FadeContent from '../reactbits/FadeContent';
-import GlassSurface from '../reactbits/GlassSurface';
-import TiltedCard from '../reactbits/TiltedCard';
 import { projects } from '../../data/projects';
-
-const tiltProps = {
-  containerWidth: '100%',
-  containerHeight: 'auto',
-  imageWidth: '100%',
-  imageHeight: 'auto',
-  scaleOnHover: 1.04,
-  rotateAmplitude: 14,
-  showMobileWarning: false,
-};
+import { ArrowUpRight } from '../ui/Icons';
 
 function ProjectCard({ project, t, lang, index }) {
+  const description = lang === 'pt' ? project.description : project.descriptionEn;
   return (
-    <FadeContent blur delay={index * 0.1} yOffset={30}>
-      <TiltedCard {...tiltProps} captionText={project.title}>
-        <GlassSurface
-          width="100%"
-          height="auto"
-          borderRadius={16}
-          borderWidth={0.095}
-          brightness={32}
-          opacity={0.93}
-          blur={32}
-          backgroundOpacity={0.24}
-          saturation={1.8}
-          distortionScale={-240}
-          className="glass-surface--minimal"
-        >
-          <div style={{ width: '100%' }}>
-            <div style={{ overflow: 'hidden', borderRadius: '16px 16px 0 0' }}>
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{ width: '100%', height: 200, objectFit: 'cover', objectPosition: 'top', display: 'block', transition: 'transform 0.5s' }}
-                draggable={false}
-              />
-            </div>
-
-            <div style={{ padding: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <h3 style={{ color: 'white', fontWeight: 700, fontSize: 16 }}>{project.title}</h3>
-                {project.featured && (
-                  <span style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5227FF', background: 'rgba(82,39,255,0.1)', padding: '2px 8px', borderRadius: 20, fontWeight: 500 }}>
-                    Pro
-                  </span>
-                )}
-              </div>
-
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, marginBottom: 16, lineHeight: 1.5 }}>
-                {lang === 'pt' ? project.description : (project.descriptionEn || project.description)}
-              </p>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
-                {project.tech.map(tech => (
-                  <span key={tech} style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', padding: '3px 10px', borderRadius: 20 }}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div style={{ display: 'flex', gap: 8 }}>
-                {project.demo && (
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                    style={{ fontSize: 12, fontWeight: 500, padding: '8px 16px', background: '#5227FF', color: 'white', borderRadius: 8, textDecoration: 'none', transition: 'all 0.3s' }}>
-                    {project.github ? t.projects.demo : t.projects.site}
-                  </a>
-                )}
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer"
-                    style={{ fontSize: 12, fontWeight: 500, padding: '8px 16px', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)', borderRadius: 8, textDecoration: 'none', transition: 'all 0.3s' }}>
-                    {t.projects.code}
-                  </a>
-                )}
-              </div>
-            </div>
+    <article className={`project-card ${index === 0 ? 'project-card-featured' : ''}`}>
+      <a href={project.demo} target="_blank" rel="noreferrer" className="project-image-link" aria-label={`${t.projects.site}: ${project.title}`}>
+        <div className="project-image">
+          <img src={project.image} alt={project.title} loading="lazy" />
+          <span className="project-open"><ArrowUpRight size={20} /></span>
+        </div>
+      </a>
+      <div className="project-body">
+        <div className="project-heading">
+          <div>
+            <p className="card-kicker">{project.category}</p>
+            <h3>{project.title}</h3>
           </div>
-        </GlassSurface>
-      </TiltedCard>
-    </FadeContent>
+          <span className="project-number">0{index + 1}</span>
+        </div>
+        <p>{description}</p>
+        <div className="tag-list">
+          {project.tech.map((tech) => <span key={tech}>{tech}</span>)}
+        </div>
+        <div className="card-actions">
+          <a href={project.demo} target="_blank" rel="noreferrer" className="text-link">
+            {t.projects.site}<ArrowUpRight />
+          </a>
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noreferrer" className="text-link text-link-muted">
+              {t.projects.code}<ArrowUpRight />
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
   );
 }
 
 export default function Projects({ t, lang }) {
   return (
-    <section id="projects" style={{ padding: '128px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ width: '100%', maxWidth: 1100, margin: '0 auto' }}>
-        <FadeContent blur>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, color: 'white', marginBottom: 64, textAlign: 'center', letterSpacing: '-0.02em' }}>
-            {t.projects.title}
-            <span style={{ color: '#5227FF' }}>.</span>
-          </h2>
-        </FadeContent>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
+    <section id="projects" className="section section-muted">
+      <div className="content-wrap">
+        <header className="section-header">
+          <p className="eyebrow">{t.projects.eyebrow}</p>
+          <h2 className="section-title">{t.projects.title}</h2>
+          <p className="section-lede">{t.projects.subtitle}</p>
+        </header>
+        <div className="projects-grid">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} t={t} lang={lang} index={index} />
           ))}
