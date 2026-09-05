@@ -19,10 +19,10 @@ export const projects = [
     title: 'Fyzen',
     category: 'Fitness product',
     categoryPt: 'Produto fitness',
-    width: 2722,
-    height: 1576,
-    alt: 'Painel do Fyzen com navegação para treinos, dieta e evolução',
-    altEn: 'Fyzen dashboard with workout, diet, and progress navigation',
+    width: 3402,
+    height: 1968,
+    alt: 'Painel do Fyzen com acesso a treino, alimentação, metas e progresso',
+    altEn: 'Fyzen dashboard with access to workouts, nutrition, goals, and progress',
     description:
       'Aplicativo que cria treinos personalizados a partir do perfil e da experiência de cada pessoa.',
     descriptionEn:
