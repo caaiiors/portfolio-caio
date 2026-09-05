@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -16,7 +16,10 @@
         place-items: center;
         background: #050505;
         color: #a1a1aa;
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
         padding: 1.5rem;
         text-align: center;
       }
@@ -47,7 +50,9 @@
         padding: 0.85rem 1rem;
         border-radius: 10px;
         cursor: pointer;
-        transition: border-color 0.2s, background 0.2s;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
       }
       button:hover {
         border-color: #5227ff;
@@ -82,7 +87,7 @@
         </button>
       </div>
 
-      <p id="status"></p>
+      <p id="status" role="status" aria-live="polite"></p>
     </div>
 
     <script>
@@ -94,7 +99,11 @@
 
         fetch(file)
           .then((res) => {
-            if (!res.ok) throw new Error('not found');
+            if (
+              !res.ok ||
+              res.headers.get('content-type')?.includes('text/html')
+            )
+              throw new Error('not found');
             return res.blob();
           })
           .then((blob) => {
@@ -103,11 +112,12 @@
             link.href = url;
             link.download = filename;
             link.click();
-            URL.revokeObjectURL(url);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
             status.textContent = 'Download iniciado. Pode fechar esta aba.';
           })
           .catch(() => {
-            status.textContent = 'Arquivo não encontrado no servidor.';
+            status.textContent =
+              'Arquivo indisponível no servidor. Tente novamente mais tarde.';
           });
       }
 

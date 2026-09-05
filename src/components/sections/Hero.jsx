@@ -1,53 +1,104 @@
+import { useState } from 'react';
+import { projects } from '../../data/projects';
 import { ArrowDown, ArrowUpRight } from '../ui/Icons';
+import ProjectImage from '../ui/ProjectImage';
 
-export default function Hero({ t }) {
+export default function Hero({ t, lang }) {
+  const [selected, setSelected] = useState(0);
+  const project = projects[selected];
   return (
-    <section id="home" className="hero section-shell">
-      <div className="hero-glow hero-glow-one" aria-hidden="true" />
-      <div className="hero-glow hero-glow-two" aria-hidden="true" />
-      <div className="hero-layout content-wrap">
-        <div className="hero-copy">
-          <div className="status-pill hero-enter delay-1">
-            <span className="status-dot" />
+    <section id="home" className="hero" aria-labelledby="hero-title">
+      <div className="content-wrap">
+        <div className="hero-meta">
+          <p className="availability">
+            <span aria-hidden="true" />
             {t.hero.status}
-          </div>
-          <p className="eyebrow hero-enter delay-2">{t.hero.eyebrow}</p>
-          <h1 className="hero-title hero-enter delay-3">
-            {t.hero.title}<br />
-            <span>{t.hero.titleAccent}</span>
-          </h1>
-          <p className="hero-description hero-enter delay-4">{t.hero.description}</p>
-          <div className="hero-actions hero-enter delay-5">
-            <a href="#projects" className="button button-primary">
-              {t.hero.cta1}
-              <ArrowDown />
-            </a>
-            <a href="#contact" className="text-link">
-              {t.hero.cta2}
-              <ArrowUpRight />
-            </a>
-          </div>
+          </p>
+          <p>{t.hero.location}</p>
         </div>
-
-        <div className="portrait-stage hero-enter delay-4">
-          <div className="portrait-halo" aria-hidden="true" />
-          <div className="portrait-frame">
-            <img src="/images/fotohome.jpeg" alt={t.hero.portraitAlt} fetchPriority="high" />
+        <div className="hero-heading hero-enter">
+          <h1 id="hero-title">
+            Caio Rissa<span>.</span>
+          </h1>
+          <p>
+            Front-end
+            <br />& UI/UX
+          </p>
+        </div>
+        <div className="hero-layout hero-enter">
+          <div className="hero-copy">
+            <h2>{t.hero.title}</h2>
+            <p className="hero-description">{t.hero.description}</p>
+            <div className="hero-actions">
+              <a href="#projects" className="button button-primary">
+                {t.hero.cta1}
+                <ArrowDown />
+              </a>
+              <a href="#contact" className="text-link">
+                {t.hero.cta2}
+              </a>
+            </div>
+            <a className="hero-person" href="#about">
+              <img
+                src="/images/fotohome-320.webp"
+                width="48"
+                height="48"
+                alt=""
+              />
+              <span>
+                {t.hero.personal}
+                <span>
+                  {t.hero.personalLink}
+                  <ArrowUpRight size={14} />
+                </span>
+              </span>
+            </a>
           </div>
-          <div className="floating-note floating-note-top">
-            <span>{t.hero.cardLabel}</span>
-            <strong>{t.hero.cardValue}</strong>
-          </div>
-          <div className="floating-note floating-note-bottom" aria-hidden="true">
-            <span className="code-dot red" /><span className="code-dot amber" /><span className="code-dot green" />
-            <code>design → code</code>
+          <div className="work-preview">
+            <div className="preview-toolbar">
+              <span>{t.hero.preview}</span>
+              <div className="preview-controls" aria-label={t.hero.choose}>
+                {projects.map((item, index) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    aria-pressed={selected === index}
+                    aria-controls="hero-preview"
+                    onClick={() => setSelected(index)}
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <a
+              id="hero-preview"
+              className={`preview-image preview-image-${selected}`}
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t.projects.site}: ${project.title}`}
+            >
+              <ProjectImage
+                key={project.title}
+                project={project}
+                lang={lang}
+                priority
+                sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1375px) 43vw, 606px"
+              />
+              <span className="preview-open">
+                <ArrowUpRight size={24} />
+              </span>
+            </a>
+            <div className="preview-caption" aria-live="polite">
+              <span>{project.title}</span>
+              <span>
+                {lang === 'pt' ? project.categoryPt : project.category}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-      <a className="scroll-cue" href="#about">
-        <span>{t.hero.scroll}</span>
-        <ArrowDown />
-      </a>
     </section>
   );
 }

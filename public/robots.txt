@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://caiorissa.vercel.app/sitemap.xml

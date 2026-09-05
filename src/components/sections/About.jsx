@@ -1,33 +1,41 @@
 export default function About({ t }) {
   return (
-    <section id="about" className="section section-muted">
-      <div className="content-wrap">
-        <div className="about-grid">
-          <div>
-            <p className="eyebrow">{t.about.eyebrow}</p>
-            <h2 className="section-title section-title-wide">{t.about.title}</h2>
+    <section
+      id="about"
+      className="section about-section"
+      aria-labelledby="about-title"
+    >
+      <div className="content-wrap about-grid">
+        <figure className="about-portrait">
+          <img
+            src="/images/fotohome-640.webp"
+            srcSet="/images/fotohome-320.webp 320w, /images/fotohome-640.webp 640w"
+            sizes="(max-width: 760px) 85vw, 30vw"
+            alt={t.hero.portraitAlt}
+            width="640"
+            height="853"
+            loading="lazy"
+          />
+          <figcaption>
+            <span>Caio Rissa Silveira</span>
+            <span>{t.hero.location}</span>
+          </figcaption>
+        </figure>
+        <div className="about-copy">
+          <p className="section-label">{t.about.eyebrow}</p>
+          <h2 id="about-title" className="section-title">
+            {t.about.title}
+          </h2>
+          <p className="section-lede">{t.about.text}</p>
+          <div className="principles-list">
+            {t.about.principles.map((principle) => (
+              <div className="principle" key={principle.title}>
+                <h3>{principle.title}</h3>
+                <p>{principle.text}</p>
+              </div>
+            ))}
           </div>
-          <p className="section-lede about-lede">{t.about.text}</p>
         </div>
-
-        <div className="principles-grid">
-          {t.about.principles.map((principle, index) => (
-            <article className="principle-card" key={principle.title}>
-              <span className="principle-index">0{index + 1}</span>
-              <h3>{principle.title}</h3>
-              <p>{principle.text}</p>
-            </article>
-          ))}
-        </div>
-
-        <dl className="stats-row">
-          {t.about.stats.map((stat) => (
-            <div key={stat.label}>
-              <dt>{stat.value}</dt>
-              <dd>{stat.label}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

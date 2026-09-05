@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import { motion as Motion, useInView } from 'motion/react';
 
 const FadeContent = ({
   children,
@@ -14,7 +14,7 @@ const FadeContent = ({
   const inView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <motion.div
+    <Motion.div
       ref={ref}
       initial={{ opacity: 0, y: yOffset, filter: blur ? 'blur(10px)' : 'none' }}
       animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
@@ -23,7 +23,7 @@ const FadeContent = ({
       {...props}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 };
 

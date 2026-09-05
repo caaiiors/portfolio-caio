@@ -3,23 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f5f5f7" />
-    <meta name="description" content="Portfólio de Caio Rissa, desenvolvedor front-end focado em interfaces digitais claras, rápidas e bem construídas." />
-    <title>Caio Rissa Silveira — Front-end & UI/UX</title>
-    <link rel="icon" href="/images/fotohome.jpeg" type="image/jpeg" />
+    <meta name="theme-color" content="#f8f9fc" />
+    <meta
+      name="description"
+      content="Portfólio de Caio Rissa, desenvolvedor front-end focado em interfaces digitais claras, rápidas e bem construídas."
+    />
+    <title>Caio Rissa — Desenvolvimento front-end & UI/UX</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/images/fotohome.jpeg" />
+    <link rel="canonical" href="https://caiorissa.vercel.app/" />
+    <link
+      rel="preload"
+      href="/fonts/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      try {
+        const saved = localStorage.getItem('theme');
+        const theme =
+          saved === 'light' || saved === 'dark'
+            ? saved
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === 'dark' ? '#151d2b' : '#f8f9fc';
+      } catch {
+        document.documentElement.dataset.theme = matchMedia(
+          '(prefers-color-scheme: dark)',
+        ).matches
+          ? 'dark'
+          : 'light';
+      }
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://caiorissa.vercel.app" />
     <meta property="og:title" content="Caio Rissa — Front-end & UI/UX" />
-    <meta property="og:description" content="Interfaces digitais claras, rápidas e feitas para transformar boas ideias em produtos memoráveis." />
-    <meta property="og:image" content="https://caiorissa.vercel.app/images/printsite.png" />
+    <meta
+      property="og:description"
+      content="Interfaces digitais claras, rápidas e feitas para transformar boas ideias em produtos memoráveis."
+    />
+    <meta
+      property="og:image"
+      content="https://caiorissa.vercel.app/images/social-preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Caio Rissa — Desenvolvimento front-end com olhar de designer"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Caio Rissa — Front-end & UI/UX" />
-    <meta name="twitter:description" content="Interfaces digitais claras, rápidas e feitas para transformar boas ideias em produtos memoráveis." />
-    <meta name="twitter:image" content="https://caiorissa.vercel.app/images/printsite.png" />
+    <meta
+      name="twitter:description"
+      content="Interfaces digitais claras, rápidas e feitas para transformar boas ideias em produtos memoráveis."
+    />
+    <meta
+      name="twitter:image"
+      content="https://caiorissa.vercel.app/images/social-preview.png"
+    />
   </head>
   <body>
     <div id="root"></div>

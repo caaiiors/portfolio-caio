@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+import { motion as Motion, useMotionValue, useSpring } from 'motion/react';
 import './TiltedCard.css';
 
 const springValues = {
@@ -91,7 +91,7 @@ export default function TiltedCard({
         <div className="tilted-card-mobile-alert">This effect is not optimized for mobile. Check on desktop.</div>
       )}
 
-      <motion.div
+      <Motion.div
         className={`tilted-card-inner${hasChildren ? ' tilted-card-inner--auto' : ''}`}
         style={{
           width: imageWidth,
@@ -105,7 +105,7 @@ export default function TiltedCard({
           <div className="tilted-card-content">{children}</div>
         ) : (
           <>
-            <motion.img
+            <Motion.img
               src={imageSrc}
               alt={altText}
               className="tilted-card-img"
@@ -116,14 +116,14 @@ export default function TiltedCard({
             />
 
             {displayOverlayContent && overlayContent && (
-              <motion.div className="tilted-card-overlay">{overlayContent}</motion.div>
+              <Motion.div className="tilted-card-overlay">{overlayContent}</Motion.div>
             )}
           </>
         )}
-      </motion.div>
+      </Motion.div>
 
       {showTooltip && captionText && (
-        <motion.figcaption
+        <Motion.figcaption
           className="tilted-card-caption"
           style={{
             x,
@@ -133,7 +133,7 @@ export default function TiltedCard({
           }}
         >
           {captionText}
-        </motion.figcaption>
+        </Motion.figcaption>
       )}
     </figure>
   );

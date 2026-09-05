@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
+import { motion as Motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
 import { Children, cloneElement, useEffect, useMemo, useRef, useState } from 'react';
 
 function DockItem({ children, className = '', onClick, mouseX, spring, distance, magnification, baseItemSize }) {
@@ -12,7 +12,7 @@ function DockItem({ children, className = '', onClick, mouseX, spring, distance,
   const size = useSpring(targetSize, spring);
 
   return (
-    <motion.div
+    <Motion.div
       ref={ref}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
@@ -21,7 +21,7 @@ function DockItem({ children, className = '', onClick, mouseX, spring, distance,
       className={`relative inline-flex items-center justify-center rounded-xl bg-[#0a0a0a] border border-white/10 shadow-lg cursor-pointer ${className}`}
     >
       {Children.map(children, child => cloneElement(child, { isHovered }))}
-    </motion.div>
+    </Motion.div>
   );
 }
 
@@ -36,14 +36,14 @@ function DockLabel({ children, ...rest }) {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: -10 }}
           exit={{ opacity: 0, y: 0 }}
           className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-[#0a0a0a] px-2 py-0.5 text-xs text-white"
         >
           {children}
-        </motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   );
@@ -70,8 +70,8 @@ export default function Dock({
   const height = useSpring(heightRow, spring);
 
   return (
-    <motion.div style={{ height, scrollbarWidth: 'none' }} className="mx-2 flex max-w-full items-center">
-      <motion.div
+    <Motion.div style={{ height, scrollbarWidth: 'none' }} className="mx-2 flex max-w-full items-center">
+      <Motion.div
         onMouseMove={({ pageX }) => { isHovered.set(1); mouseX.set(pageX); }}
         onMouseLeave={() => { isHovered.set(0); mouseX.set(Infinity); }}
         className={`flex items-end gap-4 rounded-2xl bg-[#0a0a0a] border border-white/10 px-4 pb-3 ${className}`}
@@ -83,7 +83,7 @@ export default function Dock({
             <DockLabel>{item.label}</DockLabel>
           </DockItem>
         ))}
-      </motion.div>
-    </motion.div>
+      </Motion.div>
+    </Motion.div>
   );
 }

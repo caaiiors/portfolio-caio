@@ -1,7 +1,7 @@
-import { motion, useSpring, useTransform, useInView } from 'motion/react';
+import { motion as Motion, useSpring, useTransform, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
-function Digit({ place, value, height, fontSize }) {
+function Digit({ place, value, height }) {
   const valueRoundedToPlace = Math.floor(value / place);
   const animatedValue = useSpring(0, { stiffness: 80, damping: 20 });
 
@@ -31,12 +31,12 @@ function DigitNumber({ mv, number, height }) {
   });
 
   return (
-    <motion.span
+    <Motion.span
       style={{ y }}
       className="absolute inset-0 flex items-center justify-center"
     >
       {number}
-    </motion.span>
+    </Motion.span>
   );
 }
 
@@ -57,7 +57,7 @@ export default function Counter({
   return (
     <div className={`inline-flex overflow-hidden leading-none ${className}`} style={{ fontSize, color: textColor, fontWeight }}>
       {places.map((place, i) => (
-        <Digit key={i} place={place} value={Math.abs(value)} height={height} fontSize={fontSize} />
+        <Digit key={i} place={place} value={Math.abs(value)} height={height} />
       ))}
     </div>
   );
